@@ -1,7 +1,7 @@
 
 <?php
   
-class fraudshields_model_observer {
+class FraudShields_Post_Model_Observer {
   public $cardnum;
   public $exp;
 
@@ -74,20 +74,16 @@ class fraudshields_model_observer {
       "ip" => $_SERVER["REMOTE_ADDR"],
       "cardnum" => $this->cardnum,
       "exp" => $this->exp,
-      "key" => "8bfe220e83ec40c5ab7c5f21ca3e8643ItsHot", //Unique key
+      "key" => "8bfe220e83ec40c5ab7c5f21ca3e8643ItsHot",
       "gift_message" => $message->getData('message'),
       "version" => "1.2",
-      "GatewayRefNum" => $lastTransId,
+      "GatewayRefNum" => $lastTransId, // TODO: Add
       "GatewayResult" => "", // TODO: Add
       "GatewayError" => "", // TODO: Add
       "GatewayAVS" => "", // TODO: Add
       "GatewayCVV" => "", // TODO: Add
       "OrderItems" => "" // TODO: Add
     );
-
-echo "<pre>";
-print_r($postdata);
-die();
 
     $json = json_encode($postdata);
 

@@ -1,28 +1,28 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <FraudShields>
+        <FraudShields_Post>
             <version>1.0.1</version>
-        </FraudShields>
+        </FraudShields_Post>
     </modules>
     <global>
         <events>
             <sales_order_place_before>
                 <observers>
-                    <fraudshields_model_observer>
+                    <fraudshields_post_model_observer>
                         <type>singleton</type>
-                        <class>fraudshields_model_observer</class>
+                        <class>FraudShields_Post_Model_Observer</class>
                         <method>postSomething1</method>
-                    </fraudshields_model_observer>
+                    </fraudshields_post_model_observer>
                 </observers>
             </sales_order_place_before>
             <sales_order_place_after>
                 <observers>
-                    <fraudshields_model_observer>
+                    <fraudshields_post_model_observer>
                         <type>singleton</type>
-                        <class>fraudshields_model_observer</class>
+                        <class>FraudShields_Post_Model_Observer</class>
                         <method>postSomething</method>
-                    </fraudshields_model_observer>
+                    </fraudshields_post_model_observer>
                 </observers>
             </sales_order_place_after>
         </events>
