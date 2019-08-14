@@ -1,17 +1,16 @@
-
 <?php
-  
-class FraudShields_Post_Model_Observer {
-  public $cardnum;
-  public $exp;
 
-  public function postSomething1(Varien_Event_Observer $observer) {
-    $order = $observer->getEvent()->getOrder();
-    $this->cardnum = $order->getPayment()->getCcNumber();
-    $this->exp = str_pad($order->getPayment()->getCcExpMonth(),2,'0',STR_PAD_LEFT) . substr($order->getPayment()->getCcExpYear(), -2);
-  }
+class FraudShields_Post_Model_Observer extends Mage_Payment_Block_Info {
+	public $cardnum;
+	public $exp;
 
-  public function postSomething(Varien_Event_Observer $observer) {
+	public function FraudShieldsBefore(Varien_Event_Observer $observer) {
+	  $order = $observer->getEvent()->getOrder();
+	  $this->cardnum = $order->getPayment()->getCcNumber();
+	  $this->exp = str_pad($order->getPayment()->getCcExpMonth(),2,'0',STR_PAD_LEFT) . substr($order->getPayment()->getCcExpYear(), -2);
+	}
+
+  public function FraudShieldsAfter(Varien_Event_Observer $observer) {
     $parms=Mage::app()->getFrontController()->getRequest()->getParams();
   	//Get Payment Detail
   	extract($parms);
@@ -21,24 +20,19 @@ class FraudShields_Post_Model_Observer {
     foreach ($cardsStorage->getCards() as $card) {
       $lastTransId = $card->getLastTransId();
     }
-//Get Shipping Detail
+		//Get Shipping Detail
     $shipping=array();
     $_shippingAddress = $order->getShippingAddress();
     $_billingAddress = $order->getBillingAddress();
     $items = $order->getAllItems();
-    $itemcount=count($items);
-    $name=array();
-    $unitPrice=array();
-    $sku=array();
-    $ids=array();
-    $qty=array();
-    foreach ($items as $itemId => $item)
-    {
-       $name[] = $item->getName();
-       $unitPrice[]=$item->getPrice();
-       $sku[]=$item->getSku();
-       $ids[]=$item->getProductId();
-       $qty[]=$item->getQtyToInvoice();
+    $OrderItems = array();
+    foreach ($items as $itemId => $item) {
+    	$OrderItems[] = array(
+    		'name' => $item->getName(),
+    		'unitPrice' => $item->getPrice(),
+    		'sku' => $item->getSku(),
+    		'qty' => $item->getQtyOrdered()
+    	);
     }
     $shipping_street = $_shippingAddress->getStreet();
     $billing_street = $_billingAddress->getStreet();
@@ -71,18 +65,19 @@ class FraudShields_Post_Model_Observer {
       "billing_postcode" => $_billingAddress->getPostcode(),
       "billing_telephone" => $_billingAddress->getTelephone(),
       "billing_country_id" => $_billingAddress->getCountry(),
+      "coupon_code" => $order->getCouponCode(),
       "ip" => $_SERVER["REMOTE_ADDR"],
       "cardnum" => $this->cardnum,
       "exp" => $this->exp,
-      "key" => "8bfe220e83ec40c5ab7c5f21ca3e8643ItsHot",
+      "key" => Mage::getStoreConfig('tab1/general/text_field'),
       "gift_message" => $message->getData('message'),
-      "version" => "1.2",
-      "GatewayRefNum" => $lastTransId, // TODO: Add
+      "version" => (string) Mage::getConfig()->getNode()->modules->FraudShields_Post->version,
+      "GatewayRefNum" => $lastTransId,
       "GatewayResult" => "", // TODO: Add
       "GatewayError" => "", // TODO: Add
       "GatewayAVS" => "", // TODO: Add
       "GatewayCVV" => "", // TODO: Add
-      "OrderItems" => "" // TODO: Add
+      "OrderItems" => $OrderItems // TODO: Add
     );
 
     $json = json_encode($postdata);

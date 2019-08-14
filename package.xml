@@ -1,18 +1,20 @@
 <?xml version="1.0"?>
 <package>
     <name>FraudShields</name>
-    <version>1.2.1.0</version>
+    <version>1.3.0.1</version>
     <stability>stable</stability>
     <license>GNU General Public License (GPL)</license>
     <channel>community</channel>
     <extends/>
-    <summary>FraudShields Extension</summary>
-    <description>This is the description for the FraudShields Extension</description>
-    <notes>No Notes</notes>
-    <authors><author><name>Shaya Krauss</name><user>fpswebmaster</user><email>webmaster@fidelitypayment.com</email></author></authors>
-    <date>2013-12-05</date>
-    <time>21:02:03</time>
-    <contents><target name="magelocal"><dir name="FraudShields"><dir name="Post"><dir name="Model"><file name="Observer.php" hash="cd4cde9fd2dfe5ca2cb81403a95afc94"/></dir><dir name="etc"><file name="config.xml" hash="c7a9f8c4dcc90e66ece35758f26087e1"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="FraudShields_Post.xml" hash="72319e4ae2fa32e50b34401ad68c68fc"/></dir></target></contents>
+    <summary>FraudShields Online Fraud Protection Extension</summary>
+    <description>This is the official FraudShields Magento Extension.&#xD;
+&#xD;
+For more info visit http://fraudshields.com/</description>
+    <notes>Added Discount Code to Fraud array</notes>
+    <authors><author><name>Shaya Krauss</name><user>skrauss</user><email>webmaster@fidelitypayment.com</email></author></authors>
+    <date>2014-01-14</date>
+    <time>17:18:28</time>
+    <contents><target name="magelocal"><dir name="FraudShields"><dir name="Post"><dir name="Model"><file name="Observer.php" hash="90c2fb3669a66204418cf4a3d6340718"/></dir><dir name="etc"><file name="config.xml" hash="d437c91c58849dc592ec512de60efb40"/><file name="adminhtml.xml" hash="d677b49801a1a685a51c9d72f1466143"/><file name="system.xml" hash="5377821d52d403032a31a690bbe0f8af"/></dir></dir></dir></target><target name="mage"><dir name="app"><dir name="etc"><dir name="modules"><file name="FraudShields_Post.xml" hash="ce04ec50e7e1ad4ebbcbec6180c9f925"/></dir></dir></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.0.0</min><max>6.0.0</max></php></required></dependencies>
 </package>
