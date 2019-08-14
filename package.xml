@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>FraudShields</name>
+    <version>1.2.0.8</version>
+    <stability>stable</stability>
+    <license>GNU General Public License (GPL)</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>FraudShields Extension</summary>
+    <description>This is the description for the FraudShields Extension</description>
+    <notes>No Notes</notes>
+    <authors><author><name>Shaya Krauss</name><user>fpswebmaster</user><email>webmaster@fidelitypayment.com</email></author></authors>
+    <date>2013-12-05</date>
+    <time>16:10:59</time>
+    <contents><target name="magelocal"><dir name="FraudShields"><dir name="Post"><dir name="Model"><file name="Observer.php" hash="2af055df11b1b3763ec3b2e819421df9"/></dir><dir name="etc"><file name="config.xml" hash="55b7ee4dee5672db2c7dfd2803093062"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="FraudShields.xml" hash="311c8e5f4ed52a284966d7ba504d35ae"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.0.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

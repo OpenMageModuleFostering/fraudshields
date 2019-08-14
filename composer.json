@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/FraudShields",
+    "type": "magento-module",
+    "license": "GNU-General-Public-License-(GPL)",
+    "homepage": "",
+    "description": "FraudShields Extension",
+    "authors": [
+    {
+        "name": "Shaya Krauss",
+        "email": "webmaster@fidelitypayment.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
